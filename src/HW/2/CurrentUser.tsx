@@ -1,16 +1,15 @@
-import React from 'react';
 import { UserType } from './HW2';
+import { UsersObjectType } from './HW2';
 
 type CurrentUserPropsType = {
-  user: UserType;
+  user: UsersObjectType // пропиши типизацию
 };
 
 export const CurrentUser = (props: CurrentUserPropsType) => {
-  const { user } = props;
   return (
-    <li id={`hw02-user-${user.id}`}>
-      <strong>{user.name}</strong> (Age: {user.age}) <strong> Address: </strong>
-      {user.address.street}, {user.address.city}
+    <li key={props.user.id} id={`hw02-user-${props.user.id}`}>
+      <strong>{props.user.name}</strong> (Age: {props.user.age})<strong> Address: </strong>
+      {props.user.address.street}, {props.user.address.city}
     </li>
   );
 };
