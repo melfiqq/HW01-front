@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { UserList2 } from './UserList2';
 
 export type AddressType = {
@@ -14,23 +14,12 @@ export type UserType = {
 };
 
 export type UsersObjectType = {
-  myFriends: UserType; // пропиши типизацию
+  myFriends: UserType[];
 };
 
 export const HW2 = () => {
-
-  // 1️⃣ Раскомментируйте JSX (UserList2.tsx) и вы увидите,
-  // что приложение начнет гореть красным и ругаться 😡
-  // 2️⃣ Ваша задача: ❗ПОЧИНИТЬ ПРОЕКТ❗
-  // - прописать типизацию, где необходимо
-  // - починить все, что горит красным
-  // - дописать функциональность (где указано комментариями)
-  // - приложение должно компилироваться и запускаться в браузере
-
-  // ❗ Массив с данными не трогаем!
-
-  const users = {
-    myFriends:[
+  const initialUsers: UsersObjectType = {
+    myFriends: [
       { id: 1, name: 'John', age: 25, address: { street: '123 Main St', city: 'New York' } },
       { id: 2, name: 'Alice', age: 30, address: { street: '456 Elm St', city: 'San Francisco' } },
       { id: 3, name: 'Bob', age: 35, address: { street: '789 Oak St', city: 'Seattle' } },
@@ -41,18 +30,20 @@ export const HW2 = () => {
       { id: 8, name: 'Robert', age: 4, address: { street: '876 Spruce Way', city: 'San Francisco' } },
       { id: 9, name: 'Jessica', age: 12, address: { street: '543 Willow Dr', city: 'San Francisco' } },
       { id: 10, name: 'Emily', age: 55, address: { street: '765 Aspen Blvd', city: 'Los Angeles' } },
-    ]
-  }
+    ],
+  };
 
-  let [currentUsers, setCurrentUsers] = useState<UsersObjectType>(users);
+  const [currentUsers, setCurrentUsers] = useState<UsersObjectType>(initialUsers);
 
   const filterUsers = () => {
-    const filteredUsers = users.myFriends.filter(user => user.address.city='Los Angeles');
+    const filteredUsers = initialUsers.myFriends.filter(
+      (user) => user.address.city === 'Los Angeles'
+    );
     setCurrentUsers({ myFriends: filteredUsers });
   };
 
   return (
-    <div id={'hw02'}>
+    <div id="hw02">
       <UserList2 users={currentUsers} filterUsers={filterUsers} />
     </div>
   );
