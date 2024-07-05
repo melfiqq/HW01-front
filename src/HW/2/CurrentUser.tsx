@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { UserType } from './HW2';
 
 type CurrentUserPropsType = {
